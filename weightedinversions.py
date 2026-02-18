@@ -1,11 +1,10 @@
 
-def merge(left, right):
-    total = 0
+def count_merge(left, right):
     if not len(left):
         return left
     if not len(right):
         return right
-    
+    amount = 0
     result = []
     right_index = 0
     left_index = 0
@@ -15,48 +14,51 @@ def merge(left, right):
             result.append(left[left_index])
             left_index += 1
         else:
-            #if the left index is greater than the right index, meaning i<j and bi>bj
-            
-            total += left[left_index] + right[right_index]
-            print(total)
+            temp = left_index
+            while temp < len(left):
+                amount += left[temp] + right[right_index]
+                # print(total)
+                temp += 1
+
             result.append(right[right_index])
             right_index += 1
         if left_index == len(left):
+            # if left[left_index - 1] > right[right_index]:
+            #     total = left[left_index - 1] + right[right_index]
+            #     print(total)
             result.extend(right[right_index:])
             break
         if right_index == len(right):
+            # if left[left_index] > right[right_index - 1]:
+            #     total = left[left_index] + right[right_index - 1]
+            #     print(total)
             result.extend(left[left_index:])
             break
-    return result
+    return result, amount
 
-def main(data):
-
+def inverse_count(data):
     if len(data) < 2:
-        return data
+        return data, 0
     
     mid = len(data)//2
-    left= main(data[0:mid])
-    right = main(data[mid:])
+    left, left_amount= inverse_count(data[0:mid])
+    right, right_amount = inverse_count(data[mid:])
 
-    merged = merge(left, right)
-    print("hi")
-    return merged
+    merged, merge_weight = count_merge(left, right)
+    return merged, left_amount + right_amount + merge_weight
 
 if __name__ == "__main__":
     import sys
 
     # Read all lines from stdin
     lines = sys.stdin.read().strip().split()
-    print(lines)
-    # # First number is n
-    # n = int(lines[0])
 
-    # # The next n numbers are the array
-    # data = list(map(int, lines[1:n+1]))
+    #the length is the first line
+    amount = int(lines[0])
 
-    # # Now call your merge-sort function
-    # result = main(data)
-
-    # # Print the sorted result (or whatever output the assignment requires)
-    # print(result)
+    #next n numbers are the array
+    data = list(map(int, lines[1:amount+1]))
+    
+    sorted = inverse_count(data)
+    print(sorted[1])
 
