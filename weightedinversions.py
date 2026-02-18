@@ -10,7 +10,7 @@ def count_merge(left, right):
     left_index = 0
     total = len(left) + len(right)
     while len(result) < total:
-        if left[left_index] < right[right_index]:
+        if left[left_index] <= right[right_index]:
             result.append(left[left_index])
             left_index += 1
         else:
