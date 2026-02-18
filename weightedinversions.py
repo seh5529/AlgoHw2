@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     #the length is the first line
     amount = int(lines[0])
-    if amount <= 1000:
+    if amount <= 100:
 
         #next n numbers are the array
         data = list(map(int, lines[1:amount+1]))
