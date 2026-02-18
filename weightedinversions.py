@@ -1,9 +1,9 @@
 
 def count_merge(left, right):
     if not len(left):
-        return left
+        return left, 0
     if not len(right):
-        return right
+        return right, 0
     amount = 0
     result = []
     right_index = 0
