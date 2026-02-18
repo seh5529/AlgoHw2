@@ -55,10 +55,10 @@ if __name__ == "__main__":
 
     #the length is the first line
     amount = int(lines[0])
-
-    #next n numbers are the array
-    data = list(map(int, lines[1:amount+1]))
-    
-    sorted = inverse_count(data)
-    print(sorted[1])
+    if amount <= 10000:
+        #next n numbers are the array
+        data = list(map(int, lines[1:amount+1]))
+        
+        sorted = inverse_count(data)
+        print(sorted[1])
 
