@@ -47,16 +47,16 @@ if __name__ == "__main__":
 
     # Read all lines from stdin
     lines = sys.stdin.read().strip().split()
+    print(lines)
+    # # First number is n
+    # n = int(lines[0])
 
-    # First number is n
-    n = int(lines[0])
+    # # The next n numbers are the array
+    # data = list(map(int, lines[1:n+1]))
 
-    # The next n numbers are the array
-    data = list(map(int, lines[1:n+1]))
+    # # Now call your merge-sort function
+    # result = main(data)
 
-    # Now call your merge-sort function
-    result = main(data)
-
-    # Print the sorted result (or whatever output the assignment requires)
-    print(result)
+    # # Print the sorted result (or whatever output the assignment requires)
+    # print(result)
 
