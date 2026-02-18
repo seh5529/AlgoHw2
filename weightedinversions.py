@@ -57,7 +57,6 @@ if __name__ == "__main__":
 
     # Read all lines from stdin
     lines = sys.stdin.read().strip().split()
-    start = time.time()
     #the length is the first line
     amount = int(lines[0])
 
@@ -66,6 +65,4 @@ if __name__ == "__main__":
     
     sorted = inverse_count(data)
     print(sorted[1])
-    end = time.time()
-    print(start-end)
 
