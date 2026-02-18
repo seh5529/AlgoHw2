@@ -1,10 +1,14 @@
-
+import time
 def count_merge(left, right):
     if not len(left):
         return left, 0
     if not len(right):
         return right, 0
     amount = 0
+    prefix = [0] * len(left) 
+    prefix[0] = left[0] 
+    for i in range(1, len(left)): 
+        prefix[i] = prefix[i-1] + left[i]
     result = []
     right_index = 0
     left_index = 0
@@ -14,11 +18,12 @@ def count_merge(left, right):
             result.append(left[left_index])
             left_index += 1
         else:
-            temp = left_index
-            while temp < len(left):
-                amount += left[temp] + right[right_index]
-                # print(total)
-                temp += 1
+            #how many are left to the right of the left index
+            remaining = len(left) - left_index
+            #prefix[-1] is the entire prefix left sum, so prefix_total - (prefix of everything before the left_index)
+            sum_left = prefix[-1] - (prefix[left_index-1] if left_index > 0 else 0) 
+            #
+            amount += sum_left + remaining * right[right_index]
 
             result.append(right[right_index])
             right_index += 1
@@ -52,13 +57,15 @@ if __name__ == "__main__":
 
     # Read all lines from stdin
     lines = sys.stdin.read().strip().split()
-
+    start = time.time()
     #the length is the first line
     amount = int(lines[0])
-    if amount <= 100000:
-        #next n numbers are the array
-        data = list(map(int, lines[1:amount+1]))
-        
-        sorted = inverse_count(data)
-        print(sorted[1])
+
+    #next n numbers are the array
+    data = list(map(int, lines[1:amount+1]))
+    
+    sorted = inverse_count(data)
+    print(sorted[1])
+    end = time.time()
+    print(start-end)
 
